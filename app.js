@@ -36,9 +36,11 @@ app.listen(port, () => {
           message: "No record found!"
         }
       });
-    }
+    } else {
 
-    response.json({ data: record });
+  response.json({ data: record });
+
+  }
 
 
   })
