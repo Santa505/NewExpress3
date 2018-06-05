@@ -21,27 +21,34 @@ function findById(data, id) {
 
 app.use(cors());
 
-
-app.listen(port, () => {
-  app.get("/", function (request, response) {
-    response.json({ data: students });
+app.get("/", function (request, response) {
+  response.json({
+    data: students
   });
+});
 
-  app.get("/:id", function (request, response) {
-    var record = findById(students, request.params.id);
-    if (!record) {
-      response.status = 404;
-      response.json({
-        error: {
-          message: "No record found!"
-        }
-      });
-    } else {
+app.get("/:id", function (request, response) {
+  var record = findById(students, request.params.id);
+  if (!record) {
+    response.status(404);
+    response.json({
+      error: {
+        message: "No record found!"
+      }
+    });
+  } else {
 
-  response.json({ data: record });
+    response.json({
+      data: record
+    });
 
   }
 
 
-  })
+})
+
+
+app.listen(port, () => {
+  console.log('server running');
+
 })
